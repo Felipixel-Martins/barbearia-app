@@ -166,7 +166,7 @@
                 <span id="selected-duration-badge" class="text-brand-gold font-semibold">Duração: ~30 min</span>
               </div>
               <div id="client-time-slots" class="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
-                <!-- Injetado dinamicamente -->
+                <!-- Injetado dinamicamente com validação de horário retroativo -->
               </div>
             </div>
           </section>
@@ -705,7 +705,10 @@
           const date = new Date();
           date.setDate(date.getDate() + i);
           
-          const iso = date.toISOString().split('T')[0];
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const day = String(date.getDate()).padStart(2, '0');
+          const iso = `${year}-${month}-${day}`;
           const isSunday = date.getDay() === 0;
 
           if (i === 0 && !this.selectedDate) {
@@ -769,22 +772,41 @@
         const occupiedBookings = db.bookings.filter(b => b.date === this.selectedDate && b.status === 'confirmed');
         const blocked = db.blockedSlots.filter(blk => blk.date === this.selectedDate).map(b => b.time);
 
+        // Bloqueio de Horário Retroativo em Tempo Real
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = String(now.getMonth() + 1).padStart(2, '0');
+        const currentDay = String(now.getDate()).padStart(2, '0');
+        const todayIso = `${currentYear}-${currentMonth}-${currentDay}`;
+        const isToday = this.selectedDate === todayIso;
+        const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
+
+        let availableSlotsCount = 0;
+
         timeSlots.forEach(time => {
+          const [slotH, slotM] = time.split(':').map(Number);
+          const slotTotalMinutes = slotH * 60 + slotM;
+
+          // Se for hoje, bloqueia horários passados ou com menos de 10 min de antecedência
+          const isPastTime = isToday && (slotTotalMinutes <= (currentTotalMinutes + 10));
           const isBlocked = blocked.includes(time);
           const isOccupied = occupiedBookings.some(b => b.time === time);
-          const isUnavailable = isBlocked || isOccupied;
+          const isUnavailable = isPastTime || isBlocked || isOccupied;
           const isSelected = this.selectedTime === time;
+
+          if (!isUnavailable) availableSlotsCount++;
 
           const slotBtn = document.createElement('button');
           slotBtn.disabled = isUnavailable;
           slotBtn.className = `py-2.5 rounded-xl text-xs font-semibold border transition-all ${
             isUnavailable 
-              ? 'bg-brand-cardLight/40 border-brand-border text-slate-600 cursor-not-allowed line-through' 
+              ? 'bg-brand-cardLight/30 border-brand-border/40 text-slate-600 cursor-not-allowed line-through' 
               : isSelected 
                 ? 'bg-brand-gold border-brand-gold text-brand-dark shadow-sm' 
                 : 'bg-brand-cardLight border-brand-border text-slate-200 hover:border-brand-gold'
           }`;
 
+          slotBtn.title = isPastTime ? 'Horário já ultrapassado' : isOccupied ? 'Horário reservado' : isBlocked ? 'Horário indisponível' : 'Disponível';
           slotBtn.innerText = time;
           slotBtn.onclick = () => {
             this.selectedTime = time;
@@ -793,6 +815,10 @@
 
           container.appendChild(slotBtn);
         });
+
+        if (availableSlotsCount === 0) {
+          container.innerHTML = `<div class="col-span-3 sm:col-span-4 p-4 text-center text-xs text-amber-400/90 bg-amber-500/10 rounded-2xl border border-amber-500/20">Sem horários disponíveis para o restante deste dia.</div>`;
+        }
       },
 
       updateTotals() {
