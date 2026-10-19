@@ -90,7 +90,7 @@
     <!-- Conteúdo Principal -->
     <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-8 lg:py-10">
       
-      <!-- Banner Destacado e Arejado -->
+      <!-- Banner Destacado -->
       <div class="relative rounded-3xl bg-gradient-to-r from-brand-card via-brand-card to-brand-cardLight border border-brand-border p-6 sm:p-8 mb-10 overflow-hidden shadow-xl">
         <div class="relative z-10 max-w-2xl space-y-2">
           <span class="inline-block text-[11px] font-bold tracking-widest text-brand-gold uppercase bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20">
@@ -108,7 +108,7 @@
         </div>
       </div>
 
-      <!-- Grid com Respiro Generoso: 7 colunas (Catálogo) x 5 colunas (Checkout/Horários) -->
+      <!-- Grid Principal -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
         <!-- COLUNA DA ESQUERDA: SERVIÇOS & PRODUTOS -->
@@ -128,7 +128,7 @@
             </div>
           </section>
 
-          <!-- 2. Catálogo de Produtos -->
+          <!-- 2. Catálogo de Produtos com Estoque Visível -->
           <section class="space-y-4">
             <div class="flex items-center justify-between pb-1">
               <h3 class="font-heading font-bold text-base text-slate-100 uppercase tracking-wide flex items-center gap-2.5">
@@ -153,7 +153,6 @@
               <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span> 3. Data & Horário
             </h3>
 
-            <!-- Seletor de Dias com espaçamento -->
             <div class="space-y-2">
               <span class="block text-xs font-medium text-slate-400">Selecione o dia do atendimento:</span>
               <div id="client-days-picker" class="flex gap-2.5 overflow-x-auto no-scrollbar pb-2">
@@ -161,7 +160,6 @@
               </div>
             </div>
 
-            <!-- Grade de Horários -->
             <div class="pt-3 border-t border-brand-border/70 space-y-3">
               <div class="flex items-center justify-between text-xs text-slate-400">
                 <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-gold"></i> Horários disponíveis:</span>
@@ -173,7 +171,7 @@
             </div>
           </section>
 
-          <!-- 4. Identificação e Finalização -->
+          <!-- 4. Identificação do Cliente -->
           <section class="bg-brand-card rounded-3xl border border-brand-border p-6 space-y-5 shadow-lg">
             <h3 class="font-heading font-bold text-base text-slate-100 uppercase tracking-wide flex items-center gap-2.5">
               <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span> 4. Seus Dados
@@ -190,7 +188,6 @@
               </div>
             </div>
 
-            <!-- Resumo e Botão Desktop -->
             <div class="pt-4 border-t border-brand-border flex items-center justify-between">
               <div>
                 <span class="block text-xs text-slate-400">Total Previsto</span>
@@ -209,7 +206,7 @@
 
     </main>
 
-    <!-- Bottom Bar Mobile (Fixa apenas em telas pequenas) -->
+    <!-- Bottom Bar Mobile -->
     <div class="lg:hidden sticky bottom-0 left-0 right-0 bg-brand-card/95 backdrop-blur-lg border-t border-brand-border p-4 z-30 flex items-center justify-between">
       <div>
         <span class="block text-[10px] text-slate-400 uppercase tracking-wider">Total</span>
@@ -337,14 +334,14 @@
         </div>
       </section>
 
-      <!-- TAB 2: ESTOQUE -->
+      <!-- TAB 2: ESTOQUE (COM EDIÇÃO, EXCLUSÃO E CRIAÇÃO) -->
       <section id="admin-tab-stock" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 class="font-heading font-bold text-base text-white">Controle Rápido de Estoque</h2>
-            <p class="text-xs text-slate-400 mt-0.5">Dê baixa instantânea ou adicione novos itens à venda.</p>
+            <h2 class="font-heading font-bold text-base text-white">Controle de Estoque & Produtos</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Crie novos produtos, edite valores, ajuste estoque ou exclua itens.</p>
           </div>
-          <button onclick="AdminDashboard.openNewProductModal()" class="bg-brand-gold text-brand-dark font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-xl hover:brightness-110 flex items-center gap-2 self-start transition-all">
+          <button onclick="AdminDashboard.openProductModal()" class="bg-brand-gold text-brand-dark font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-xl hover:brightness-110 flex items-center gap-2 self-start transition-all">
             <i data-lucide="plus" class="w-4 h-4"></i> Novo Produto
           </button>
         </div>
@@ -352,14 +349,14 @@
         <div id="admin-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
       </section>
 
-      <!-- TAB 3: SERVIÇOS -->
+      <!-- TAB 3: SERVIÇOS (COM EDIÇÃO, EXCLUSÃO E CRIAÇÃO) -->
       <section id="admin-tab-services" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 class="font-heading font-bold text-base text-white">Serviços da Barbearia</h2>
-            <p class="text-xs text-slate-400 mt-0.5">Gerencie preços e duração em minutos de cada atendimento.</p>
+            <p class="text-xs text-slate-400 mt-0.5">Gerencie preços, duração em minutos, edite ou cadastre novos serviços.</p>
           </div>
-          <button onclick="AdminDashboard.openNewServiceModal()" class="bg-brand-gold text-brand-dark font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-xl hover:brightness-110 flex items-center gap-2 self-start transition-all">
+          <button onclick="AdminDashboard.openServiceModal()" class="bg-brand-gold text-brand-dark font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-xl hover:brightness-110 flex items-center gap-2 self-start transition-all">
             <i data-lucide="plus" class="w-4 h-4"></i> Novo Serviço
           </button>
         </div>
@@ -405,6 +402,103 @@
       </section>
 
     </main>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: PRODUTO (CRIAR / EDITAR)            -->
+  <!-- ========================================== -->
+  <div id="modal-product" class="hidden fixed inset-0 bg-[#080C14]/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+        <h3 id="modal-product-title" class="font-heading font-bold text-base text-white">Editar Produto</h3>
+        <button onclick="AdminDashboard.closeProductModal()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <input type="hidden" id="form-product-id">
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1.5">Nome do Produto</label>
+          <input id="form-product-name" type="text" placeholder="Ex: Pomada Efeito Matte" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1.5">Preço (R$)</label>
+            <input id="form-product-price" type="number" step="0.01" placeholder="35.00" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1.5">Estoque Inicial</label>
+            <input id="form-product-stock" type="number" placeholder="10" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1.5">Categoria</label>
+          <input id="form-product-category" type="text" placeholder="Ex: Finalizador, Barba, Shampoo" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-brand-border flex items-center justify-between">
+        <button id="btn-delete-product" onclick="AdminDashboard.deleteCurrentProduct()" class="text-xs text-rose-400 hover:text-rose-300 font-semibold px-3 py-2 rounded-xl bg-rose-500/10 border border-rose-500/20">
+          Excluir
+        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="AdminDashboard.closeProductModal()" class="text-xs text-slate-400 hover:text-slate-200 px-4 py-2.5">Cancelar</button>
+          <button onclick="AdminDashboard.saveProductForm()" class="bg-brand-gold text-brand-dark font-heading font-bold text-xs uppercase px-5 py-2.5 rounded-xl hover:brightness-110">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: SERVIÇO (CRIAR / EDITAR)            -->
+  <!-- ========================================== -->
+  <div id="modal-service" class="hidden fixed inset-0 bg-[#080C14]/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+        <h3 id="modal-service-title" class="font-heading font-bold text-base text-white">Editar Serviço</h3>
+        <button onclick="AdminDashboard.closeServiceModal()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <input type="hidden" id="form-service-id">
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1.5">Nome do Serviço</label>
+          <input id="form-service-name" type="text" placeholder="Ex: Corte Degradê / Fade" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1.5">Preço (R$)</label>
+            <input id="form-service-price" type="number" step="0.01" placeholder="45.00" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1.5">Duração (Minutos)</label>
+            <input id="form-service-duration" type="number" placeholder="30" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-brand-border flex items-center justify-between">
+        <button id="btn-delete-service" onclick="AdminDashboard.deleteCurrentService()" class="text-xs text-rose-400 hover:text-rose-300 font-semibold px-3 py-2 rounded-xl bg-rose-500/10 border border-rose-500/20">
+          Excluir
+        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="AdminDashboard.closeServiceModal()" class="text-xs text-slate-400 hover:text-slate-200 px-4 py-2.5">Cancelar</button>
+          <button onclick="AdminDashboard.saveServiceForm()" class="bg-brand-gold text-brand-dark font-heading font-bold text-xs uppercase px-5 py-2.5 rounded-xl hover:brightness-110">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ========================================== -->
@@ -543,18 +637,27 @@
 
           card.innerHTML = `
             <div class="space-y-1.5">
-              <span class="text-[10px] uppercase tracking-wider font-bold ${isOutOfStock ? 'text-rose-400' : 'text-brand-gold'}">
-                ${isOutOfStock ? 'Esgotado' : p.category}
-              </span>
-              <h4 class="text-sm font-semibold text-slate-100 leading-snug">${p.name}</h4>
-              <div class="text-sm font-heading font-bold text-white pt-1">R$ ${p.price.toFixed(2)}</div>
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] uppercase tracking-wider font-bold text-slate-400">${p.category}</span>
+                <span class="text-[11px] px-2 py-0.5 rounded-md font-semibold ${
+                  isOutOfStock 
+                    ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' 
+                    : p.stock <= 2 
+                      ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' 
+                      : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                }">
+                  ${isOutOfStock ? 'Esgotado' : p.stock <= 2 ? `Apenas ${p.stock} restantes` : `${p.stock} em estoque`}
+                </span>
+              </div>
+              <h4 class="text-sm font-semibold text-slate-100 leading-snug pt-1">${p.name}</h4>
+              <div class="text-sm font-heading font-bold text-brand-gold pt-0.5">R$ ${p.price.toFixed(2)}</div>
             </div>
 
             <div class="mt-5 flex items-center justify-between pt-3 border-t border-brand-border/60">
               ${isOutOfStock ? `
-                <span class="text-xs text-slate-500">Sem estoque</span>
+                <span class="text-xs text-slate-500">Indisponível</span>
               ` : `
-                <span class="text-xs text-slate-400">Quantidade:</span>
+                <span class="text-xs text-slate-400">Adicionar:</span>
                 <div class="flex items-center gap-2 bg-brand-cardLight p-1 rounded-xl border border-brand-border">
                   <button onclick="ClientApp.changeProductQty('${p.id}', -1)" class="w-7 h-7 rounded-lg bg-brand-card hover:bg-slate-700 flex items-center justify-center text-xs text-slate-300 font-bold transition-all">-</button>
                   <span class="w-6 text-center text-xs font-bold text-white">${qty}</span>
@@ -979,30 +1082,36 @@
 
         db.products.forEach(p => {
           const card = document.createElement('div');
-          card.className = 'bg-brand-card border border-brand-border rounded-2xl p-5 flex flex-col justify-between space-y-4';
+          card.className = 'bg-brand-card border border-brand-border rounded-2xl p-5 flex flex-col justify-between space-y-4 hover:border-slate-500 transition-all';
           card.innerHTML = `
             <div>
               <div class="flex items-center justify-between">
                 <span class="text-[10px] uppercase font-bold text-slate-400">${p.category}</span>
-                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold ${p.stock <= 2 ? 'bg-rose-500/10 text-rose-400' : 'bg-emerald-500/10 text-emerald-400'}">
-                  ${p.stock} em estoque
-                </span>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs px-2.5 py-0.5 rounded-full font-bold ${p.stock <= 2 ? 'bg-rose-500/10 text-rose-400' : 'bg-emerald-500/10 text-emerald-400'}">
+                    ${p.stock} em estoque
+                  </span>
+                  <button onclick="AdminDashboard.openProductModal('${p.id}')" class="p-1 rounded-lg bg-brand-cardLight hover:bg-slate-700 text-slate-300" title="Editar Produto">
+                    <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
               </div>
-              <h3 class="text-sm font-semibold text-white mt-1.5 leading-snug">${p.name}</h3>
+              <h3 class="text-sm font-semibold text-white mt-2 leading-snug">${p.name}</h3>
               <div class="text-base font-heading font-black text-brand-gold mt-1">R$ ${p.price.toFixed(2)}</div>
             </div>
 
             <div class="flex items-center justify-between pt-3 border-t border-brand-border">
               <span class="text-xs text-slate-400">Ajuste de Estoque:</span>
               <div class="flex items-center gap-2">
-                <button onclick="AdminDashboard.updateStock('${p.id}', -1)" class="w-8 h-8 rounded-xl bg-brand-cardLight border border-brand-border hover:bg-slate-700 flex items-center justify-center text-sm font-bold text-slate-200">-</button>
+                <button onclick="AdminDashboard.updateStock('${p.id}', -1)" class="w-8 h-8 rounded-xl bg-brand-cardLight border border-brand-border hover:bg-slate-700 flex items-center justify-center text-sm font-bold text-slate-200 transition-all">-</button>
                 <span class="w-6 text-center text-sm font-bold text-white">${p.stock}</span>
-                <button onclick="AdminDashboard.updateStock('${p.id}', 1)" class="w-8 h-8 rounded-xl bg-brand-cardLight border border-brand-border hover:bg-slate-700 flex items-center justify-center text-sm font-bold text-slate-200">+</button>
+                <button onclick="AdminDashboard.updateStock('${p.id}', 1)" class="w-8 h-8 rounded-xl bg-brand-cardLight border border-brand-border hover:bg-slate-700 flex items-center justify-center text-sm font-bold text-slate-200 transition-all">+</button>
               </div>
             </div>
           `;
           grid.appendChild(card);
         });
+        lucide.createIcons();
       },
 
       updateStock(id, delta) {
@@ -1016,22 +1125,96 @@
         }
       },
 
-      openNewProductModal() {
-        const name = prompt('Nome do Produto:');
-        if (!name) return;
-        const price = parseFloat(prompt('Preço (Ex: 35.00):') || '0');
-        const stock = parseInt(prompt('Quantidade em Estoque:') || '0');
-        const category = prompt('Categoria (Ex: Finalizador, Óleo, Barba):') || 'Geral';
+      openProductModal(id = null) {
+        const modal = document.getElementById('modal-product');
+        const title = document.getElementById('modal-product-title');
+        const delBtn = document.getElementById('btn-delete-product');
+
+        if (id) {
+          const db = DataManager.get();
+          const p = db.products.find(item => item.id === id);
+          if (!p) return;
+
+          title.innerText = 'Editar Produto';
+          document.getElementById('form-product-id').value = p.id;
+          document.getElementById('form-product-name').value = p.name;
+          document.getElementById('form-product-price').value = p.price;
+          document.getElementById('form-product-stock').value = p.stock;
+          document.getElementById('form-product-category').value = p.category;
+          delBtn.classList.remove('hidden');
+        } else {
+          title.innerText = 'Novo Produto';
+          document.getElementById('form-product-id').value = '';
+          document.getElementById('form-product-name').value = '';
+          document.getElementById('form-product-price').value = '';
+          document.getElementById('form-product-stock').value = '';
+          document.getElementById('form-product-category').value = '';
+          delBtn.classList.add('hidden');
+        }
+
+        modal.classList.remove('hidden');
+        lucide.createIcons();
+      },
+
+      closeProductModal() {
+        document.getElementById('modal-product').classList.add('hidden');
+      },
+
+      saveProductForm() {
+        const id = document.getElementById('form-product-id').value;
+        const name = document.getElementById('form-product-name').value.trim();
+        const price = parseFloat(document.getElementById('form-product-price').value);
+        const stock = parseInt(document.getElementById('form-product-stock').value);
+        const category = document.getElementById('form-product-category').value.trim() || 'Geral';
+
+        if (!name) {
+          alert('Por favor, informe o nome do produto.');
+          return;
+        }
+        if (isNaN(price) || price < 0) {
+          alert('Preço inválido.');
+          return;
+        }
+        if (isNaN(stock) || stock < 0) {
+          alert('Estoque inválido.');
+          return;
+        }
 
         const db = DataManager.get();
-        db.products.push({
-          id: 'p_' + Date.now(),
-          name,
-          price,
-          stock,
-          category
-        });
+
+        if (id) {
+          const p = db.products.find(item => item.id === id);
+          if (p) {
+            p.name = name;
+            p.price = price;
+            p.stock = stock;
+            p.category = category;
+          }
+        } else {
+          db.products.push({
+            id: 'p_' + Date.now(),
+            name,
+            price,
+            stock,
+            category
+          });
+        }
+
         DataManager.save(db);
+        this.closeProductModal();
+        this.renderProducts();
+        this.renderStats();
+      },
+
+      deleteCurrentProduct() {
+        const id = document.getElementById('form-product-id').value;
+        if (!id) return;
+        if (!confirm('Deseja realmente excluir este produto?')) return;
+
+        const db = DataManager.get();
+        db.products = db.products.filter(item => item.id !== id);
+        DataManager.save(db);
+        this.closeProductModal();
         this.renderProducts();
         this.renderStats();
       },
@@ -1043,21 +1226,25 @@
 
         db.services.forEach(s => {
           const item = document.createElement('div');
-          item.className = 'bg-brand-card border border-brand-border rounded-2xl p-5 flex items-center justify-between';
+          item.className = 'bg-brand-card border border-brand-border rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-slate-500 transition-all';
           item.innerHTML = `
             <div>
               <h4 class="text-sm font-bold text-white">${s.name}</h4>
               <p class="text-xs text-slate-400 mt-0.5">Duração estimada: ${s.duration} min</p>
             </div>
-            <div class="flex items-center gap-4">
-              <span class="text-sm font-heading font-bold text-brand-gold">R$ ${s.price.toFixed(2)}</span>
-              <button onclick="AdminDashboard.toggleServiceStatus('${s.id}')" class="text-xs px-3.5 py-1.5 rounded-xl font-medium transition-all ${s.active ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-700 text-slate-400'}">
+            <div class="flex items-center gap-3 self-end sm:self-center">
+              <span class="text-sm font-heading font-bold text-brand-gold mr-1">R$ ${s.price.toFixed(2)}</span>
+              <button onclick="AdminDashboard.toggleServiceStatus('${s.id}')" class="text-xs px-3 py-1.5 rounded-xl font-medium transition-all ${s.active ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-700 text-slate-400'}">
                 ${s.active ? 'Ativo' : 'Desativado'}
+              </button>
+              <button onclick="AdminDashboard.openServiceModal('${s.id}')" class="p-2 rounded-xl bg-brand-cardLight border border-brand-border hover:bg-slate-700 text-slate-300" title="Editar Serviço">
+                <i data-lucide="pencil" class="w-4 h-4"></i>
               </button>
             </div>
           `;
           container.appendChild(item);
         });
+        lucide.createIcons();
       },
 
       toggleServiceStatus(id) {
@@ -1070,21 +1257,91 @@
         }
       },
 
-      openNewServiceModal() {
-        const name = prompt('Nome do Serviço:');
-        if (!name) return;
-        const price = parseFloat(prompt('Valor em R$:') || '0');
-        const duration = parseInt(prompt('Duração em minutos (Ex: 30, 45):') || '30');
+      openServiceModal(id = null) {
+        const modal = document.getElementById('modal-service');
+        const title = document.getElementById('modal-service-title');
+        const delBtn = document.getElementById('btn-delete-service');
+
+        if (id) {
+          const db = DataManager.get();
+          const s = db.services.find(item => item.id === id);
+          if (!s) return;
+
+          title.innerText = 'Editar Serviço';
+          document.getElementById('form-service-id').value = s.id;
+          document.getElementById('form-service-name').value = s.name;
+          document.getElementById('form-service-price').value = s.price;
+          document.getElementById('form-service-duration').value = s.duration;
+          delBtn.classList.remove('hidden');
+        } else {
+          title.innerText = 'Novo Serviço';
+          document.getElementById('form-service-id').value = '';
+          document.getElementById('form-service-name').value = '';
+          document.getElementById('form-service-price').value = '';
+          document.getElementById('form-service-duration').value = '';
+          delBtn.classList.add('hidden');
+        }
+
+        modal.classList.remove('hidden');
+        lucide.createIcons();
+      },
+
+      closeServiceModal() {
+        document.getElementById('modal-service').classList.add('hidden');
+      },
+
+      saveServiceForm() {
+        const id = document.getElementById('form-service-id').value;
+        const name = document.getElementById('form-service-name').value.trim();
+        const price = parseFloat(document.getElementById('form-service-price').value);
+        const duration = parseInt(document.getElementById('form-service-duration').value);
+
+        if (!name) {
+          alert('Por favor, informe o nome do serviço.');
+          return;
+        }
+        if (isNaN(price) || price < 0) {
+          alert('Preço inválido.');
+          return;
+        }
+        if (isNaN(duration) || duration <= 0) {
+          alert('Duração inválida.');
+          return;
+        }
 
         const db = DataManager.get();
-        db.services.push({
-          id: 's_' + Date.now(),
-          name,
-          price,
-          duration,
-          active: true
-        });
+
+        if (id) {
+          const s = db.services.find(item => item.id === id);
+          if (s) {
+            s.name = name;
+            s.price = price;
+            s.duration = duration;
+          }
+        } else {
+          db.services.push({
+            id: 's_' + Date.now(),
+            name,
+            price,
+            duration,
+            active: true
+          });
+        }
+
         DataManager.save(db);
+        this.closeServiceModal();
+        this.renderServices();
+      },
+
+      deleteCurrentService() {
+        const id = document.getElementById('form-service-id').value;
+        if (!id) return;
+        if (!confirm('Deseja realmente excluir este serviço?')) return;
+
+        const db = DataManager.get();
+        db.services = db.services.filter(item => item.id !== id);
+        DataManager.save(db);
+        this.closeServiceModal();
         this.renderServices();
       },
 
