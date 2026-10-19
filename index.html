@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbearia ROCHA</title>
+  
+  <!-- Fontes de Alta Legibilidade -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#D4AF37',
+              goldLight: '#F3E5AB',
+              goldDark: '#9E7E1B',
+              dark: '#080C14',
+              card: '#101726',
+              cardHover: '#162035',
+              cardLight: '#19243C',
+              border: '#22304C',
+              borderFocus: '#D4AF37'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #080C14; }
+    ::-webkit-scrollbar-thumb { background: #22304C; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    body {
+      background-color: #080C14;
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-gold selection:text-brand-dark">
+
+  <!-- ========================================== -->
+  <!-- 1. VISÃO DO CLIENTE                        -->
+  <!-- ========================================== -->
+  <div id="view-client" class="w-full flex-1 flex flex-col">
+    
+    <!-- Topbar Limpa -->
+    <header class="bg-brand-card/90 backdrop-blur-md border-b border-brand-border sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-4 sm:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3.5">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-gold to-brand-goldDark flex items-center justify-center shadow-lg shadow-brand-gold/15 text-brand-dark font-heading font-black text-xl">
+            R
+          </div>
+          <div>
+            <h1 class="font-heading font-extrabold text-base sm:text-lg tracking-wider text-slate-100 flex items-center gap-1.5">
+              BARBEARIA <span class="text-brand-gold">ROCHA</span>
+            </h1>
+            <p class="text-xs text-emerald-400 font-medium flex items-center gap-1.5 mt-0.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Agendamento Online
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-brand-cardLight border border-brand-border text-xs text-slate-300 font-medium">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span>Unidade Centro</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-8 lg:py-10">
+      
+      <!-- Banner Destacado e Arejado -->
+      <div class="relative rounded-3xl bg-gradient-to-r from-brand-card via-brand-card to-brand-cardLight border border-brand-border p-6 sm:p-8 mb-10 overflow-hidden shadow-xl">
+        <div class="relative z-10 max-w-2xl space-y-2">
+          <span class="inline-block text-[11px] font-bold tracking-widest text-brand-gold uppercase bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20">
+            Experiência & Estilo
+          </span>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl text-white leading-tight">
+            Seu visual com precisão de mestre.
+          </h2>
+          <p class="text-sm text-slate-300 leading-relaxed pt-1">
+            Selecione o corte, adicione produtos de cuidado pessoal e garanta seu horário diretamente na agenda do profissional.
+          </p>
+        </div>
+        <div class="absolute -right-6 -bottom-8 opacity-10 pointer-events-none hidden sm:block">
+          <i data-lucide="scissors" class="w-56 h-56 text-brand-gold"></i>
+        </div>
+      </div>
+
+      <!-- Grid com Respiro Generoso: 7 colunas (Catálogo) x 5 colunas (Checkout/Horários) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- COLUNA DA ESQUERDA: SERVIÇOS & PRODUTOS -->
+        <div class="lg:col-span-7 space-y-10">
+          
+          <!-- 1. Catálogo de Serviços -->
+          <section class="space-y-4">
+            <div class="flex items-center justify-between pb-1">
+              <h3 class="font-heading font-bold text-base text-slate-100 uppercase tracking-wide flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span> 1. Escolha os Serviços
+              </h3>
+              <span class="text-xs text-slate-400">Você pode marcar múltiplos</span>
+            </div>
+
+            <div id="client-services-list" class="space-y-3.5">
+              <!-- Injetado dinamicamente -->
+            </div>
+          </section>
+
+          <!-- 2. Catálogo de Produtos -->
+          <section class="space-y-4">
+            <div class="flex items-center justify-between pb-1">
+              <h3 class="font-heading font-bold text-base text-slate-100 uppercase tracking-wide flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span> 2. Cuidados para Levar
+              </h3>
+              <span class="text-xs text-brand-gold font-medium">Pronta entrega</span>
+            </div>
+
+            <div id="client-products-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Injetado dinamicamente -->
+            </div>
+          </section>
+
+        </div>
+
+        <!-- COLUNA DA DIREITA: DATA, HORÁRIOS & SEUS DADOS (STICKY) -->
+        <div class="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
+          
+          <!-- 3. Calendário & Horários -->
+          <section class="bg-brand-card rounded-3xl border border-brand-border p-6 space-y-5 shadow-lg">
+            <h3 class="font-heading font-bold text-base text-slate-100 uppercase tracking-wide flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span> 3. Data & Horário
+            </h3>
+
+            <!-- Seletor de Dias com espaçamento -->
+            <div class="space-y-2">
+              <span class="block text-xs font-medium text-slate-400">Selecione o dia do atendimento:</span>
+              <div id="client-days-picker" class="flex gap-2.5 overflow-x-auto no-scrollbar pb-2">
+                <!-- Injetado dinamicamente -->
+              </div>
+            </div>
+
+            <!-- Grade de Horários -->
+            <div class="pt-3 border-t border-brand-border/70 space-y-3">
+              <div class="flex items-center justify-between text-xs text-slate-400">
+                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-gold"></i> Horários disponíveis:</span>
+                <span id="selected-duration-badge" class="text-brand-gold font-semibold">Duração: ~30 min</span>
+              </div>
+              <div id="client-time-slots" class="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
+                <!-- Injetado dinamicamente -->
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Identificação e Finalização -->
+          <section class="bg-brand-card rounded-3xl border border-brand-border p-6 space-y-5 shadow-lg">
+            <h3 class="font-heading font-bold text-base text-slate-100 uppercase tracking-wide flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span> 4. Seus Dados
+            </h3>
+
+            <div class="space-y-3.5">
+              <div>
+                <label class="block text-xs font-medium text-slate-400 mb-1.5">Seu Nome Completo</label>
+                <input id="client-name" type="text" placeholder="Ex: Roberto Silva" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-gold transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-400 mb-1.5">WhatsApp para Contato</label>
+                <input id="client-phone" type="tel" placeholder="(47) 99999-9999" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-gold transition-all">
+              </div>
+            </div>
+
+            <!-- Resumo e Botão Desktop -->
+            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+              <div>
+                <span class="block text-xs text-slate-400">Total Previsto</span>
+                <div class="text-2xl font-heading font-extrabold text-brand-gold" id="desktop-total-price">R$ 0,00</div>
+              </div>
+              <button onclick="ClientApp.confirmBooking()" class="bg-gradient-to-r from-brand-gold to-brand-goldDark hover:brightness-110 text-brand-dark font-heading font-black text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-lg shadow-brand-gold/20 flex items-center gap-2 active:scale-95 transition-all">
+                <span>Confirmar Reserva</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Bottom Bar Mobile (Fixa apenas em telas pequenas) -->
+    <div class="lg:hidden sticky bottom-0 left-0 right-0 bg-brand-card/95 backdrop-blur-lg border-t border-brand-border p-4 z-30 flex items-center justify-between">
+      <div>
+        <span class="block text-[10px] text-slate-400 uppercase tracking-wider">Total</span>
+        <div class="text-lg font-heading font-extrabold text-brand-gold" id="mobile-total-price">R$ 0,00</div>
+      </div>
+      <button onclick="ClientApp.confirmBooking()" class="bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-heading font-black text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow-lg shadow-brand-gold/20 flex items-center gap-2">
+        <span>Agendar Agora</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. LOGIN ADMIN POR PIN (ROTA #admin)       -->
+  <!-- ========================================== -->
+  <div id="view-admin-lock" class="hidden fixed inset-0 bg-[#080C14]/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-brand-card border border-brand-border rounded-3xl p-8 text-center space-y-6 shadow-2xl">
+      <div class="w-16 h-16 rounded-2xl bg-brand-cardLight border border-brand-border mx-auto flex items-center justify-center text-brand-gold shadow-md">
+        <i data-lucide="shield-check" class="w-8 h-8"></i>
+      </div>
+      <div>
+        <h2 class="font-heading font-bold text-lg text-white">Área Restrita Rocha</h2>
+        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Acesso exclusivo do proprietário. Digite o PIN de 4 dígitos.</p>
+      </div>
+
+      <div class="flex justify-center gap-3">
+        <input id="pin-1" type="password" maxlength="1" class="w-12 h-14 bg-brand-cardLight border border-brand-border text-center text-xl font-bold rounded-xl focus:border-brand-gold outline-none text-white" oninput="AdminAuth.handlePinInput(this, 1)">
+        <input id="pin-2" type="password" maxlength="1" class="w-12 h-14 bg-brand-cardLight border border-brand-border text-center text-xl font-bold rounded-xl focus:border-brand-gold outline-none text-white" oninput="AdminAuth.handlePinInput(this, 2)">
+        <input id="pin-3" type="password" maxlength="1" class="w-12 h-14 bg-brand-cardLight border border-brand-border text-center text-xl font-bold rounded-xl focus:border-brand-gold outline-none text-white" oninput="AdminAuth.handlePinInput(this, 3)">
+        <input id="pin-4" type="password" maxlength="1" class="w-12 h-14 bg-brand-cardLight border border-brand-border text-center text-xl font-bold rounded-xl focus:border-brand-gold outline-none text-white" oninput="AdminAuth.handlePinInput(this, 4)">
+      </div>
+
+      <p id="pin-error-msg" class="text-xs text-rose-500 hidden font-medium">PIN incorreto. Tente novamente.</p>
+
+      <div class="pt-2">
+        <button onclick="window.location.hash = ''" class="text-xs text-slate-400 hover:text-slate-200 transition-colors">
+          ← Voltar para agendamento
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 3. PAINEL DO BARBEIRO (DASHBOARD)          -->
+  <!-- ========================================== -->
+  <div id="view-admin-dashboard" class="hidden w-full min-h-screen bg-[#080C14] text-slate-100 flex flex-col">
+    
+    <header class="bg-brand-card border-b border-brand-border px-6 sm:px-8 py-4 flex items-center justify-between sticky top-0 z-30">
+      <div class="flex items-center gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-gold to-brand-goldDark flex items-center justify-center font-heading font-black text-brand-dark text-lg">
+          R
+        </div>
+        <div>
+          <h1 class="font-heading font-extrabold text-base text-white">Barbearia ROCHA • <span class="text-brand-gold">Gestão</span></h1>
+          <p class="text-xs text-slate-400">Painel do Administrador</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="AdminDashboard.openQuickBlockModal()" class="hidden sm:flex items-center gap-2 bg-brand-cardLight border border-brand-border hover:border-brand-gold text-xs font-semibold px-3.5 py-2 rounded-xl transition-all">
+          <i data-lucide="ban" class="w-4 h-4 text-rose-400"></i>
+          <span>Bloquear Horário</span>
+        </button>
+        <button onclick="AdminAuth.logout()" class="flex items-center gap-1.5 text-xs text-rose-400 hover:text-rose-300 bg-rose-500/10 border border-rose-500/20 px-3.5 py-2 rounded-xl transition-all">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Sair</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Abas de Navegação -->
+    <div class="bg-brand-card border-b border-brand-border px-6 sm:px-8 flex gap-6 overflow-x-auto no-scrollbar">
+      <button onclick="AdminDashboard.setTab('agenda')" id="tab-btn-agenda" class="py-3.5 px-1 border-b-2 border-brand-gold text-brand-gold font-medium text-sm flex items-center gap-2 whitespace-nowrap">
+        <i data-lucide="calendar" class="w-4 h-4"></i> Agenda & Reservas
+      </button>
+      <button onclick="AdminDashboard.setTab('stock')" id="tab-btn-stock" class="py-3.5 px-1 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-medium text-sm flex items-center gap-2 whitespace-nowrap">
+        <i data-lucide="boxes" class="w-4 h-4"></i> Estoque & Produtos
+      </button>
+      <button onclick="AdminDashboard.setTab('services')" id="tab-btn-services" class="py-3.5 px-1 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-medium text-sm flex items-center gap-2 whitespace-nowrap">
+        <i data-lucide="scissors" class="w-4 h-4"></i> Serviços
+      </button>
+      <button onclick="AdminDashboard.setTab('settings')" id="tab-btn-settings" class="py-3.5 px-1 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-medium text-sm flex items-center gap-2 whitespace-nowrap">
+        <i data-lucide="settings" class="w-4 h-4"></i> Ajustes
+      </button>
+    </div>
+
+    <!-- Conteúdo do Painel -->
+    <main class="flex-1 p-4 sm:p-8 max-w-6xl w-full mx-auto space-y-8">
+      
+      <!-- TAB 1: AGENDA -->
+      <section id="admin-tab-agenda" class="space-y-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-5">
+            <span class="text-xs text-slate-400">Total Agendamentos</span>
+            <div id="stat-total-bookings" class="text-2xl font-heading font-black text-white mt-1">0</div>
+          </div>
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-5">
+            <span class="text-xs text-slate-400">Faturamento Previsto</span>
+            <div id="stat-expected-revenue" class="text-2xl font-heading font-black text-brand-gold mt-1">R$ 0,00</div>
+          </div>
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-5">
+            <span class="text-xs text-slate-400">Produtos Vendidos</span>
+            <div id="stat-products-sold" class="text-2xl font-heading font-black text-emerald-400 mt-1">0 un</div>
+          </div>
+          <div class="bg-brand-card border border-brand-border rounded-2xl p-5">
+            <span class="text-xs text-slate-400">Alertas de Estoque</span>
+            <div id="stat-low-stock-count" class="text-2xl font-heading font-black text-amber-400 mt-1">0</div>
+          </div>
+        </div>
+
+        <div class="bg-brand-card border border-brand-border rounded-3xl overflow-hidden shadow-lg">
+          <div class="p-6 border-b border-brand-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="font-heading font-bold text-base text-white">Clientes & Horários Marcados</h2>
+              <p class="text-xs text-slate-400 mt-0.5">Lista completa com serviços, contatos e itens comprados.</p>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="text-xs text-slate-400">Filtrar data:</span>
+              <input id="admin-agenda-date-filter" type="date" class="bg-brand-cardLight border border-brand-border rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-brand-gold" onchange="AdminDashboard.renderBookings()">
+            </div>
+          </div>
+
+          <div id="admin-bookings-container" class="divide-y divide-brand-border"></div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ESTOQUE -->
+      <section id="admin-tab-stock" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-heading font-bold text-base text-white">Controle Rápido de Estoque</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Dê baixa instantânea ou adicione novos itens à venda.</p>
+          </div>
+          <button onclick="AdminDashboard.openNewProductModal()" class="bg-brand-gold text-brand-dark font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-xl hover:brightness-110 flex items-center gap-2 self-start transition-all">
+            <i data-lucide="plus" class="w-4 h-4"></i> Novo Produto
+          </button>
+        </div>
+
+        <div id="admin-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- TAB 3: SERVIÇOS -->
+      <section id="admin-tab-services" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-heading font-bold text-base text-white">Serviços da Barbearia</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Gerencie preços e duração em minutos de cada atendimento.</p>
+          </div>
+          <button onclick="AdminDashboard.openNewServiceModal()" class="bg-brand-gold text-brand-dark font-heading font-bold text-xs uppercase px-4 py-2.5 rounded-xl hover:brightness-110 flex items-center gap-2 self-start transition-all">
+            <i data-lucide="plus" class="w-4 h-4"></i> Novo Serviço
+          </button>
+        </div>
+
+        <div id="admin-services-table" class="space-y-3.5"></div>
+      </section>
+
+      <!-- TAB 4: AJUSTES -->
+      <section id="admin-tab-settings" class="hidden space-y-6 max-w-2xl">
+        <div class="bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-8 space-y-5 shadow-lg">
+          <h2 class="font-heading font-bold text-base text-white">Configurações Gerais</h2>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1.5">WhatsApp Oficial (com DDD)</label>
+              <input id="setting-whatsapp" type="text" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold" placeholder="5547997552205">
+              <span class="text-[11px] text-slate-500 mt-1 block">Formato: 55 + DDD + Número sem espaços.</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-slate-400 mb-1.5">Horário de Abertura</label>
+                <input id="setting-open" type="time" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-400 mb-1.5">Horário de Fechamento</label>
+                <input id="setting-close" type="time" class="w-full bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1.5">Alterar PIN do Painel</label>
+              <input id="setting-pin" type="password" maxlength="4" class="w-32 bg-brand-cardLight border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-gold text-center font-bold tracking-widest" placeholder="1234">
+            </div>
+
+            <div class="pt-2">
+              <button onclick="AdminDashboard.saveSettings()" class="bg-brand-gold hover:brightness-110 text-brand-dark font-heading font-bold text-xs uppercase px-6 py-3 rounded-xl transition-all">
+                Salvar Alterações
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT: LÓGICA E ESTADOS               -->
+  <!-- ========================================== -->
+  <script>
+    const DB_KEY = 'barbearia_rocha_db_v1';
+
+    const defaultDatabase = {
+      settings: {
+        whatsappPhone: '5547997552205',
+        pin: '1234',
+        openTime: '09:00',
+        closeTime: '20:00',
+        slotInterval: 30
+      },
+      services: [
+        { id: 's1', name: 'Corte Tradicional / Fade', price: 40.00, duration: 30, active: true },
+        { id: 's2', name: 'Barba Terapia com Toalha Quente', price: 35.00, duration: 30, active: true },
+        { id: 's3', name: 'Design de Sobrancelha', price: 20.00, duration: 15, active: true },
+        { id: 's4', name: 'Combo: Cabelo + Barba', price: 70.00, duration: 55, active: true }
+      ],
+      products: [
+        { id: 'p1', name: 'Pomada Modeladora Matte', price: 38.00, stock: 8, category: 'Finalizador' },
+        { id: 'p2', name: 'Óleo Hidratante para Barba', price: 32.00, stock: 4, category: 'Barba' },
+        { id: 'p3', name: 'Shampoo Mentol Anticaspa', price: 45.00, stock: 2, category: 'Cabelo' },
+        { id: 'p4', name: 'Balm Refrescante Pós-Barba', price: 29.00, stock: 0, category: 'Barba' }
+      ],
+      bookings: [
+        {
+          id: 'b1',
+          clientName: 'Carlos Eduardo',
+          clientPhone: '47999887766',
+          date: new Date().toISOString().split('T')[0],
+          time: '14:00',
+          duration: 55,
+          services: [{ name: 'Combo: Cabelo + Barba', price: 70.00 }],
+          products: [{ name: 'Pomada Modeladora Matte', price: 38.00, qty: 1 }],
+          total: 108.00,
+          status: 'confirmed'
+        }
+      ],
+      blockedSlots: []
+    };
+
+    const DataManager = {
+      get() {
+        const stored = localStorage.getItem(DB_KEY);
+        if (!stored) {
+          localStorage.setItem(DB_KEY, JSON.stringify(defaultDatabase));
+          return defaultDatabase;
+        }
+        return JSON.parse(stored);
+      },
+      save(data) {
+        localStorage.setItem(DB_KEY, JSON.stringify(data));
+      }
+    };
+
+    const ClientApp = {
+      selectedServices: [],
+      selectedProducts: {},
+      selectedDate: '',
+      selectedTime: '',
+
+      init() {
+        this.selectedServices = ['s1'];
+        this.renderServices();
+        this.renderProducts();
+        this.renderDays();
+        this.updateTotals();
+      },
+
+      renderServices() {
+        const db = DataManager.get();
+        const container = document.getElementById('client-services-list');
+        container.innerHTML = '';
+
+        db.services.filter(s => s.active).forEach(s => {
+          const isSelected = this.selectedServices.includes(s.id);
+          const card = document.createElement('div');
+          card.className = `p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+            isSelected 
+              ? 'bg-brand-gold/10 border-brand-gold shadow-sm' 
+              : 'bg-brand-card border-brand-border hover:bg-brand-cardHover hover:border-slate-500'
+          }`;
+          card.onclick = () => this.toggleService(s.id);
+
+          card.innerHTML = `
+            <div class="flex items-center gap-4">
+              <div class="w-5 h-5 rounded-md border flex items-center justify-center transition-all ${
+                isSelected ? 'bg-brand-gold border-brand-gold text-brand-dark' : 'border-slate-600'
+              }">
+                ${isSelected ? '<i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>' : ''}
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-slate-100 leading-snug">${s.name}</h4>
+                <span class="text-xs text-slate-400 mt-0.5 block">Tempo médio: ~${s.duration} min</span>
+              </div>
+            </div>
+            <div class="text-sm sm:text-base font-heading font-bold text-brand-gold">
+              R$ ${s.price.toFixed(2)}
+            </div>
+          `;
+          container.appendChild(card);
+        });
+        lucide.createIcons();
+      },
+
+      toggleService(id) {
+        if (this.selectedServices.includes(id)) {
+          if (this.selectedServices.length > 1) {
+            this.selectedServices = this.selectedServices.filter(item => item !== id);
+          }
+        } else {
+          this.selectedServices.push(id);
+        }
+        this.renderServices();
+        this.updateTotals();
+        this.renderSlots();
+      },
+
+      renderProducts() {
+        const db = DataManager.get();
+        const container = document.getElementById('client-products-list');
+        container.innerHTML = '';
+
+        db.products.forEach(p => {
+          const qty = this.selectedProducts[p.id] || 0;
+          const isOutOfStock = p.stock <= 0;
+
+          const card = document.createElement('div');
+          card.className = `p-5 rounded-2xl border bg-brand-card flex flex-col justify-between ${
+            isOutOfStock ? 'opacity-50 border-brand-border cursor-not-allowed' : 'border-brand-border hover:border-slate-500'
+          }`;
+
+          card.innerHTML = `
+            <div class="space-y-1.5">
+              <span class="text-[10px] uppercase tracking-wider font-bold ${isOutOfStock ? 'text-rose-400' : 'text-brand-gold'}">
+                ${isOutOfStock ? 'Esgotado' : p.category}
+              </span>
+              <h4 class="text-sm font-semibold text-slate-100 leading-snug">${p.name}</h4>
+              <div class="text-sm font-heading font-bold text-white pt-1">R$ ${p.price.toFixed(2)}</div>
+            </div>
+
+            <div class="mt-5 flex items-center justify-between pt-3 border-t border-brand-border/60">
+              ${isOutOfStock ? `
+                <span class="text-xs text-slate-500">Sem estoque</span>
+              ` : `
+                <span class="text-xs text-slate-400">Quantidade:</span>
+                <div class="flex items-center gap-2 bg-brand-cardLight p-1 rounded-xl border border-brand-border">
+                  <button onclick="ClientApp.changeProductQty('${p.id}', -1)" class="w-7 h-7 rounded-lg bg-brand-card hover:bg-slate-700 flex items-center justify-center text-xs text-slate-300 font-bold transition-all">-</button>
+                  <span class="w-6 text-center text-xs font-bold text-white">${qty}</span>
+                  <button onclick="ClientApp.changeProductQty('${p.id}', 1)" class="w-7 h-7 rounded-lg bg-brand-card hover:bg-slate-700 flex items-center justify-center text-xs text-slate-300 font-bold transition-all">+</button>
+                </div>
+              `}
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      },
+
+      changeProductQty(id, delta) {
+        const db = DataManager.get();
+        const product = db.products.find(p => p.id === id);
+        if (!product) return;
+
+        const current = this.selectedProducts[id] || 0;
+        const next = current + delta;
+
+        if (next < 0) return;
+        if (next > product.stock) {
+          alert(`Estoque máximo atingido (${product.stock} un disponíveis).`);
+          return;
+        }
+
+        if (next === 0) {
+          delete this.selectedProducts[id];
+        } else {
+          this.selectedProducts[id] = next;
+        }
+
+        this.renderProducts();
+        this.updateTotals();
+      },
+
+      renderDays() {
+        const container = document.getElementById('client-days-picker');
+        container.innerHTML = '';
+        
+        const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+        const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+        for (let i = 0; i < 7; i++) {
+          const date = new Date();
+          date.setDate(date.getDate() + i);
+          
+          const iso = date.toISOString().split('T')[0];
+          const isSunday = date.getDay() === 0;
+
+          if (i === 0 && !this.selectedDate) {
+            this.selectedDate = iso;
+          }
+
+          const isSelected = this.selectedDate === iso;
+
+          const btn = document.createElement('button');
+          btn.className = `flex-shrink-0 w-16 sm:w-20 py-3 rounded-2xl border text-center transition-all ${
+            isSunday 
+              ? 'opacity-40 border-brand-border cursor-not-allowed bg-brand-card' 
+              : isSelected 
+                ? 'bg-brand-gold border-brand-gold text-brand-dark font-bold shadow-md' 
+                : 'bg-brand-card border-brand-border text-slate-300 hover:border-slate-500'
+          }`;
+          
+          btn.disabled = isSunday;
+          btn.onclick = () => {
+            this.selectedDate = iso;
+            this.selectedTime = '';
+            this.renderDays();
+            this.renderSlots();
+          };
+
+          btn.innerHTML = `
+            <div class="text-[10px] sm:text-xs uppercase font-semibold ${isSelected ? 'text-brand-dark' : 'text-slate-400'}">${daysOfWeek[date.getDay()]}</div>
+            <div class="text-base sm:text-lg font-heading font-black mt-0.5">${date.getDate()}</div>
+            <div class="text-[10px] ${isSelected ? 'text-brand-dark' : 'text-slate-400'}">${months[date.getMonth()]}</div>
+          `;
+          container.appendChild(btn);
+        }
+        this.renderSlots();
+      },
+
+      getTotalDuration() {
+        const db = DataManager.get();
+        return this.selectedServices.reduce((acc, id) => {
+          const s = db.services.find(item => item.id === id);
+          return acc + (s ? s.duration : 0);
+        }, 0);
+      },
+
+      renderSlots() {
+        const db = DataManager.get();
+        const container = document.getElementById('client-time-slots');
+        container.innerHTML = '';
+
+        const totalDuration = this.getTotalDuration();
+        document.getElementById('selected-duration-badge').innerText = `Duração: ~${totalDuration} min`;
+
+        const startH = parseInt(db.settings.openTime.split(':')[0]);
+        const endH = parseInt(db.settings.closeTime.split(':')[0]);
+
+        const timeSlots = [];
+        for (let h = startH; h < endH; h++) {
+          timeSlots.push(`${String(h).padStart(2, '0')}:00`);
+          timeSlots.push(`${String(h).padStart(2, '0')}:30`);
+        }
+
+        const occupiedBookings = db.bookings.filter(b => b.date === this.selectedDate && b.status === 'confirmed');
+        const blocked = db.blockedSlots.filter(blk => blk.date === this.selectedDate).map(b => b.time);
+
+        timeSlots.forEach(time => {
+          const isBlocked = blocked.includes(time);
+          const isOccupied = occupiedBookings.some(b => b.time === time);
+          const isUnavailable = isBlocked || isOccupied;
+          const isSelected = this.selectedTime === time;
+
+          const slotBtn = document.createElement('button');
+          slotBtn.disabled = isUnavailable;
+          slotBtn.className = `py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+            isUnavailable 
+              ? 'bg-brand-cardLight/40 border-brand-border text-slate-600 cursor-not-allowed line-through' 
+              : isSelected 
+                ? 'bg-brand-gold border-brand-gold text-brand-dark shadow-sm' 
+                : 'bg-brand-cardLight border-brand-border text-slate-200 hover:border-brand-gold'
+          }`;
+
+          slotBtn.innerText = time;
+          slotBtn.onclick = () => {
+            this.selectedTime = time;
+            this.renderSlots();
+          };
+
+          container.appendChild(slotBtn);
+        });
+      },
+
+      updateTotals() {
+        const db = DataManager.get();
+        let total = 0;
+
+        this.selectedServices.forEach(id => {
+          const s = db.services.find(item => item.id === id);
+          if (s) total += s.price;
+        });
+
+        Object.entries(this.selectedProducts).forEach(([id, qty]) => {
+          const p = db.products.find(item => item.id === id);
+          if (p) total += (p.price * qty);
+        });
+
+        const formatted = `R$ ${total.toFixed(2)}`;
+        document.getElementById('desktop-total-price').innerText = formatted;
+        document.getElementById('mobile-total-price').innerText = formatted;
+      },
+
+      confirmBooking() {
+        const clientName = document.getElementById('client-name').value.trim();
+        const clientPhone = document.getElementById('client-phone').value.trim();
+
+        if (!clientName) {
+          alert('Por favor, informe seu nome.');
+          return;
+        }
+        if (!clientPhone) {
+          alert('Por favor, informe seu WhatsApp.');
+          return;
+        }
+        if (!this.selectedTime) {
+          alert('Por favor, selecione um horário disponível na grade.');
+          return;
+        }
+
+        const db = DataManager.get();
+        const bookedServices = this.selectedServices.map(id => {
+          const s = db.services.find(item => item.id === id);
+          return { name: s.name, price: s.price };
+        });
+
+        const bookedProducts = Object.entries(this.selectedProducts).map(([id, qty]) => {
+          const p = db.products.find(item => item.id === id);
+          p.stock = Math.max(0, p.stock - qty);
+          return { name: p.name, price: p.price, qty: qty };
+        });
+
+        const totalServices = bookedServices.reduce((a, b) => a + b.price, 0);
+        const totalProducts = bookedProducts.reduce((a, b) => a + (b.price * b.qty), 0);
+        const finalTotal = totalServices + totalProducts;
+
+        const newBooking = {
+          id: 'b_' + Date.now(),
+          clientName,
+          clientPhone,
+          date: this.selectedDate,
+          time: this.selectedTime,
+          duration: this.getTotalDuration(),
+          services: bookedServices,
+          products: bookedProducts,
+          total: finalTotal,
+          status: 'confirmed'
+        };
+
+        db.bookings.push(newBooking);
+        DataManager.save(db);
+
+        this.sendWhatsAppNotification(newBooking, db.settings.whatsappPhone);
+      },
+
+      sendWhatsAppNotification(booking, barberPhone) {
+        const dateParts = booking.date.split('-');
+        const dateBR = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+
+        let text = `*SOLICITACAO DE AGENDAMENTO - BARBEARIA ROCHA*\n\n`;
+        text += `*Cliente:* ${booking.clientName}\n`;
+        text += `*Telefone:* ${booking.clientPhone}\n`;
+        text += `*Data:* ${dateBR}\n`;
+        text += `*Horario:* ${booking.time} (~${booking.duration} min)\n\n`;
+
+        text += `*Servico(s):*\n`;
+        booking.services.forEach(s => {
+          text += `- ${s.name}: R$ ${s.price.toFixed(2)}\n`;
+        });
+
+        if (booking.products.length > 0) {
+          text += `\n*Produto(s) Adicionado(s):*\n`;
+          booking.products.forEach(p => {
+            text += `- ${p.qty}x ${p.name}: R$ ${(p.price * p.qty).toFixed(2)}\n`;
+          });
+        }
+
+        text += `\n*TOTAL:* R$ ${booking.total.toFixed(2)}\n\n`;
+        text += `Mensagem gerada pelo aplicativo Barbearia Rocha.`;
+
+        const encoded = encodeURIComponent(text);
+        const cleanPhone = barberPhone.replace(/\D/g, '');
+        const waUrl = `https://wa.me/${cleanPhone}?text=${encoded}`;
+
+        window.open(waUrl, '_blank');
+        alert('Agendamento registrado com sucesso! Você será redirecionado para o WhatsApp.');
+        location.reload();
+      }
+    };
+
+    const AdminAuth = {
+      handlePinInput(el, index) {
+        if (el.value.length === 1 && index < 4) {
+          document.getElementById(`pin-${index + 1}`).focus();
+        }
+
+        const p1 = document.getElementById('pin-1').value;
+        const p2 = document.getElementById('pin-2').value;
+        const p3 = document.getElementById('pin-3').value;
+        const p4 = document.getElementById('pin-4').value;
+
+        if (p1 && p2 && p3 && p4) {
+          const typedPin = p1 + p2 + p3 + p4;
+          const db = DataManager.get();
+          if (typedPin === db.settings.pin) {
+            document.getElementById('view-admin-lock').classList.add('hidden');
+            document.getElementById('view-client').classList.add('hidden');
+            document.getElementById('view-admin-dashboard').classList.remove('hidden');
+            AdminDashboard.init();
+          } else {
+            document.getElementById('pin-error-msg').classList.remove('hidden');
+            setTimeout(() => {
+              document.getElementById('pin-1').value = '';
+              document.getElementById('pin-2').value = '';
+              document.getElementById('pin-3').value = '';
+              document.getElementById('pin-4').value = '';
+              document.getElementById('pin-1').focus();
+              document.getElementById('pin-error-msg').classList.add('hidden');
+            }, 1000);
+          }
+        }
+      },
+
+      logout() {
+        window.location.hash = '';
+        location.reload();
+      }
+    };
+
+    const AdminDashboard = {
+      init() {
+        this.renderStats();
+        this.renderBookings();
+        this.renderProducts();
+        this.renderServices();
+        this.loadSettings();
+      },
+
+      setTab(tab) {
+        const tabs = ['agenda', 'stock', 'services', 'settings'];
+        tabs.forEach(t => {
+          document.getElementById(`admin-tab-${t}`).classList.add('hidden');
+          document.getElementById(`tab-btn-${t}`).className = 'py-3.5 px-1 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-medium text-sm flex items-center gap-2 whitespace-nowrap';
+        });
+
+        document.getElementById(`admin-tab-${tab}`).classList.remove('hidden');
+        document.getElementById(`tab-btn-${tab}`).className = 'py-3.5 px-1 border-b-2 border-brand-gold text-brand-gold font-medium text-sm flex items-center gap-2 whitespace-nowrap';
+        lucide.createIcons();
+      },
+
+      renderStats() {
+        const db = DataManager.get();
+        const activeBookings = db.bookings.filter(b => b.status === 'confirmed');
+        const revenue = activeBookings.reduce((acc, b) => acc + b.total, 0);
+
+        let sold = 0;
+        activeBookings.forEach(b => {
+          b.products.forEach(p => sold += p.qty);
+        });
+
+        const lowStock = db.products.filter(p => p.stock <= 2).length;
+
+        document.getElementById('stat-total-bookings').innerText = activeBookings.length;
+        document.getElementById('stat-expected-revenue').innerText = `R$ ${revenue.toFixed(2)}`;
+        document.getElementById('stat-products-sold').innerText = `${sold} un`;
+        document.getElementById('stat-low-stock-count').innerText = lowStock;
+      },
+
+      renderBookings() {
+        const db = DataManager.get();
+        const container = document.getElementById('admin-bookings-container');
+        const dateFilter = document.getElementById('admin-agenda-date-filter').value;
+        container.innerHTML = '';
+
+        let list = db.bookings;
+        if (dateFilter) {
+          list = list.filter(b => b.date === dateFilter);
+        }
+
+        if (list.length === 0) {
+          container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">Nenhum agendamento encontrado para esta data.</div>`;
+          return;
+        }
+
+        list.slice().reverse().forEach(b => {
+          const item = document.createElement('div');
+          item.className = 'p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-brand-cardLight/30 transition-all';
+
+          const dateParts = b.date.split('-');
+          const dateBR = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+
+          const clientCleanPhone = b.clientPhone.replace(/\D/g, '');
+          const waChatLink = `https://wa.me/55${clientCleanPhone}?text=Olá%20${encodeURIComponent(b.clientName)},%20aqui%20é%20da%20Barbearia%20Rocha!`;
+
+          item.innerHTML = `
+            <div class="space-y-2 flex-1">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="font-heading font-extrabold text-sm text-white">${b.clientName}</span>
+                <a href="${waChatLink}" target="_blank" class="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-lg text-xs hover:bg-emerald-500/20 transition-all">
+                  <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> ${b.clientPhone}
+                </a>
+                <span class="text-xs px-2.5 py-0.5 rounded-md ${b.status === 'confirmed' ? 'bg-blue-500/10 text-blue-400' : 'bg-slate-700 text-slate-300'}">
+                  ${b.status === 'confirmed' ? 'Confirmado' : 'Concluído'}
+                </span>
+              </div>
+
+              <div class="text-xs text-slate-300 flex items-center gap-4 pt-1">
+                <span><strong>Data:</strong> ${dateBR} às ${b.time}</span>
+                <span><strong>Duração:</strong> ~${b.duration} min</span>
+              </div>
+
+              <div class="text-xs text-slate-400 pt-0.5">
+                <span class="text-slate-300 font-semibold">Serviço(s):</span> 
+                ${b.services.map(s => `${s.name} (R$ ${s.price.toFixed(2)})`).join(', ')}
+              </div>
+
+              ${b.products.length > 0 ? `
+                <div class="text-xs text-brand-gold bg-brand-cardLight p-2.5 rounded-xl border border-brand-border inline-block mt-1">
+                  <span class="font-semibold text-white">Produtos:</span> 
+                  ${b.products.map(p => `${p.qty}x ${p.name} [R$ ${(p.price * p.qty).toFixed(2)}]`).join(' • ')}
+                </div>
+              ` : ''}
+            </div>
+
+            <div class="flex items-center gap-4 self-end md:self-center">
+              <div class="text-right mr-2">
+                <span class="text-[10px] text-slate-400 block uppercase">Total Geral</span>
+                <span class="text-lg font-heading font-black text-brand-gold">R$ ${b.total.toFixed(2)}</span>
+              </div>
+              ${b.status === 'confirmed' ? `
+                <button onclick="AdminDashboard.completeBooking('${b.id}')" class="bg-emerald-500 hover:bg-emerald-600 text-white p-2.5 rounded-xl text-xs transition-all shadow-sm" title="Concluir Atendimento">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </button>
+                <button onclick="AdminDashboard.cancelBooking('${b.id}')" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 p-2.5 rounded-xl text-xs transition-all" title="Cancelar Reserva">
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              ` : ''}
+            </div>
+          `;
+          container.appendChild(item);
+        });
+        lucide.createIcons();
+      },
+
+      completeBooking(id) {
+        const db = DataManager.get();
+        const b = db.bookings.find(item => item.id === id);
+        if (b) {
+          b.status = 'completed';
+          DataManager.save(db);
+          this.renderStats();
+          this.renderBookings();
+        }
+      },
+
+      cancelBooking(id) {
+        if (!confirm('Deseja realmente cancelar este agendamento?')) return;
+        const db = DataManager.get();
+        db.bookings = db.bookings.filter(b => b.id !== id);
+        DataManager.save(db);
+        this.renderStats();
+        this.renderBookings();
+      },
+
+      renderProducts() {
+        const db = DataManager.get();
+        const grid = document.getElementById('admin-products-grid');
+        grid.innerHTML = '';
+
+        db.products.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'bg-brand-card border border-brand-border rounded-2xl p-5 flex flex-col justify-between space-y-4';
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] uppercase font-bold text-slate-400">${p.category}</span>
+                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold ${p.stock <= 2 ? 'bg-rose-500/10 text-rose-400' : 'bg-emerald-500/10 text-emerald-400'}">
+                  ${p.stock} em estoque
+                </span>
+              </div>
+              <h3 class="text-sm font-semibold text-white mt-1.5 leading-snug">${p.name}</h3>
+              <div class="text-base font-heading font-black text-brand-gold mt-1">R$ ${p.price.toFixed(2)}</div>
+            </div>
+
+            <div class="flex items-center justify-between pt-3 border-t border-brand-border">
+              <span class="text-xs text-slate-400">Ajuste de Estoque:</span>
+              <div class="flex items-center gap-2">
+                <button onclick="AdminDashboard.updateStock('${p.id}', -1)" class="w-8 h-8 rounded-xl bg-brand-cardLight border border-brand-border hover:bg-slate-700 flex items-center justify-center text-sm font-bold text-slate-200">-</button>
+                <span class="w-6 text-center text-sm font-bold text-white">${p.stock}</span>
+                <button onclick="AdminDashboard.updateStock('${p.id}', 1)" class="w-8 h-8 rounded-xl bg-brand-cardLight border border-brand-border hover:bg-slate-700 flex items-center justify-center text-sm font-bold text-slate-200">+</button>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      },
+
+      updateStock(id, delta) {
+        const db = DataManager.get();
+        const p = db.products.find(item => item.id === id);
+        if (p) {
+          p.stock = Math.max(0, p.stock + delta);
+          DataManager.save(db);
+          this.renderProducts();
+          this.renderStats();
+        }
+      },
+
+      openNewProductModal() {
+        const name = prompt('Nome do Produto:');
+        if (!name) return;
+        const price = parseFloat(prompt('Preço (Ex: 35.00):') || '0');
+        const stock = parseInt(prompt('Quantidade em Estoque:') || '0');
+        const category = prompt('Categoria (Ex: Finalizador, Óleo, Barba):') || 'Geral';
+
+        const db = DataManager.get();
+        db.products.push({
+          id: 'p_' + Date.now(),
+          name,
+          price,
+          stock,
+          category
+        });
+        DataManager.save(db);
+        this.renderProducts();
+        this.renderStats();
+      },
+
+      renderServices() {
+        const db = DataManager.get();
+        const container = document.getElementById('admin-services-table');
+        container.innerHTML = '';
+
+        db.services.forEach(s => {
+          const item = document.createElement('div');
+          item.className = 'bg-brand-card border border-brand-border rounded-2xl p-5 flex items-center justify-between';
+          item.innerHTML = `
+            <div>
+              <h4 class="text-sm font-bold text-white">${s.name}</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Duração estimada: ${s.duration} min</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-sm font-heading font-bold text-brand-gold">R$ ${s.price.toFixed(2)}</span>
+              <button onclick="AdminDashboard.toggleServiceStatus('${s.id}')" class="text-xs px-3.5 py-1.5 rounded-xl font-medium transition-all ${s.active ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-700 text-slate-400'}">
+                ${s.active ? 'Ativo' : 'Desativado'}
+              </button>
+            </div>
+          `;
+          container.appendChild(item);
+        });
+      },
+
+      toggleServiceStatus(id) {
+        const db = DataManager.get();
+        const s = db.services.find(item => item.id === id);
+        if (s) {
+          s.active = !s.active;
+          DataManager.save(db);
+          this.renderServices();
+        }
+      },
+
+      openNewServiceModal() {
+        const name = prompt('Nome do Serviço:');
+        if (!name) return;
+        const price = parseFloat(prompt('Valor em R$:') || '0');
+        const duration = parseInt(prompt('Duração em minutos (Ex: 30, 45):') || '30');
+
+        const db = DataManager.get();
+        db.services.push({
+          id: 's_' + Date.now(),
+          name,
+          price,
+          duration,
+          active: true
+        });
+        DataManager.save(db);
+        this.renderServices();
+      },
+
+      openQuickBlockModal() {
+        const date = prompt('Data para bloqueio (AAAA-MM-DD):', new Date().toISOString().split('T')[0]);
+        if (!date) return;
+        const time = prompt('Horário para bloquear (Ex: 15:00):');
+        if (!time) return;
+
+        const db = DataManager.get();
+        db.blockedSlots.push({ date, time });
+        DataManager.save(db);
+        alert(`Horário ${time} bloqueado com sucesso para ${date}.`);
+      },
+
+      loadSettings() {
+        const db = DataManager.get();
+        document.getElementById('setting-whatsapp').value = db.settings.whatsappPhone;
+        document.getElementById('setting-open').value = db.settings.openTime;
+        document.getElementById('setting-close').value = db.settings.closeTime;
+        document.getElementById('setting-pin').value = db.settings.pin;
+      },
+
+      saveSettings() {
+        const db = DataManager.get();
+        db.settings.whatsappPhone = document.getElementById('setting-whatsapp').value.trim();
+        db.settings.openTime = document.getElementById('setting-open').value;
+        db.settings.closeTime = document.getElementById('setting-close').value;
+        
+        const newPin = document.getElementById('setting-pin').value.trim();
+        if (newPin.length === 4) {
+          db.settings.pin = newPin;
+        }
+
+        DataManager.save(db);
+        alert('Configurações salvas com sucesso!');
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#admin') {
+        document.getElementById('view-client').classList.add('hidden');
+        document.getElementById('view-admin-lock').classList.remove('hidden');
+        document.getElementById('pin-1').focus();
+      } else {
+        ClientApp.init();
+      }
+      lucide.createIcons();
+    });
+
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#admin') {
+        document.getElementById('view-client').classList.add('hidden');
+        document.getElementById('view-admin-lock').classList.remove('hidden');
+        document.getElementById('pin-1').focus();
+      } else {
+        location.reload();
+      }
+    });
+  </script>
+</body>
+</html>
